@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CoreComponent } from './core.component';
 
 export const CoreRoutes: Routes = [{
+  // ROTAS PARA SEPARAÇÃO DE MODULOS
   path: '',
   component: CoreComponent,
   data: {
@@ -18,6 +19,10 @@ export const CoreRoutes: Routes = [{
     {
       path: 'inicio',
       loadChildren: './inicio/inicio.module#InicioModule',
+    },
+    {
+      path: 'questionario',
+      loadChildren: './questionario/questionario.module#QuestionarioModule',
     },
   ],
 }];
