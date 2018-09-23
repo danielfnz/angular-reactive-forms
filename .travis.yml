@@ -1,0 +1,26 @@
+sudo: required
+addons:
+  chrome: stable
+
+language: node_js
+node_js:
+  - stable
+
+branches:
+  only:
+    - master
+
+before_script:
+  - npm install -g @angular/cli
+
+script:
+  - ng build --prod --aot
+  - ng test
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: 2e65d7b785dfd795138f11015b08aae79acccdbc
+  keep-history: true
+  on:
+    branch: master
