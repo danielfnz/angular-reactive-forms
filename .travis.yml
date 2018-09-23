@@ -27,6 +27,6 @@ deploy:
   skip-cleanup: true
   github_token: $GITHUB_TOKEN
   keep-history: true
-  local-dir: ./dist/
+  local-dir: ./dist/cedro-test
   on:
     branch: master
