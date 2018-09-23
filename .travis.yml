@@ -20,7 +20,7 @@ cache:
 script:
   - ng lint
   - ng test --watch=false
-  - ng build --prod --aot
+  - ng build --prod --base-href https://danielfnz.github.io/cedro-test/
 
 deploy:
   provider: pages
