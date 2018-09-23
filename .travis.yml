@@ -1,7 +1,4 @@
 sudo: required
-addons:
-  chrome: stable
-
 language: node_js
 node_js:
   - stable
@@ -10,8 +7,15 @@ branches:
   only:
     - master
 
+addons:
+  chrome: stable
+
 before_script:
   - npm install -g @angular/cli
+
+cache:
+  directories:
+    - node_modules
 
 script:
   - ng build --prod --aot
@@ -19,7 +23,8 @@ script:
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: 6f6d07f7045e658f19fa05ea8ca4fecf5e57b48b
+  github_token: $GITHUB_TOKEN
   keep-history: true
+  local-dir: ./dist/
   on:
     branch: master
