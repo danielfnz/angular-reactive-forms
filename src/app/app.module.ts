@@ -11,6 +11,7 @@ import { CoreComponent } from './core/core.component';
 import { QuestionarioComponent } from './core/questionario/questionario.component';
 import { QuestionarioRespondidoComponent } from './core/questionario/questionario-respondido/questionario-respondido.component';
 import { InicioComponent } from './core/inicio/inicio.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InicioComponent } from './core/inicio/inicio.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     AppRouting,
     CoreModule,
