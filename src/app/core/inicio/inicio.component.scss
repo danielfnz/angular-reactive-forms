@@ -1,0 +1,15 @@
+
+.decisao {
+  margin-top:4em;
+  .decisao-pergunta {
+    text-align: center;
+  }
+  .decisao-botoes {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    button {
+      margin: 5px;
+    }
+  }
+}
