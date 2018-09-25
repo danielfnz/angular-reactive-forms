@@ -1,0 +1,15 @@
+<h2 mat-dialog-title class="text-center">{{data.titulo}}</h2>
+<div mat-dialog-content class="mat-typography">
+  <p>
+    {{data.termos}}
+  </p>
+</div>
+<hr>
+
+<div class="aceito-termos">
+  <mat-checkbox color="warn" [(ngModel)]="termosAceitosCheckBox">Li e aceito os termos e condições acima</mat-checkbox>
+</div>
+
+<div mat-dialog-actions align="center">
+  <button mat-flat-button mat-dialog-close color="warn" [disabled]="!termosAceitosCheckBox" (click)="aceitouTermos()">OK, ENTENDI</button>
+</div>

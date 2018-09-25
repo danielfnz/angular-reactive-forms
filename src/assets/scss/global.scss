@@ -5,19 +5,17 @@
 
 // default theme:
 $primary: mat-palette($mat-deep-purple);
+$warn : #FFFF00;
+$muted : #777777;
 
 html,
 body {
-    height: 100%;
-}
-
-body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
 }
 p {
-  color: #777777;
+  color: $muted;
 }
 
 .text-center {
@@ -27,5 +25,9 @@ p {
 .bold {
   font-weight: bold;
   color: mat-color($primary);
+}
+
+hr {
+  border-top:1px dashed $muted !important;
 }
 

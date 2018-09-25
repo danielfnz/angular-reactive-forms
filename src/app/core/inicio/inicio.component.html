@@ -1,7 +1,7 @@
 <span class="text-center">
 
   <div style="margin-top:10%;">
-    <img src="../assets/icons/checklist.svg" alt="Actuar"  width="50px">
+    <img src="assets/icons/checklist.svg" alt="Informações recebidas"  width="50px">
   </div>
 
   <p class="bold">
@@ -20,7 +20,7 @@
     <p>Gostaria de responder ao Perfil do investidor?</p>
   </div>
   <div class="decisao-botoes">
-    <button mat-stroked-button color="primary">NÃO</button>
-    <button mat-stroked-button color="primary">SIM</button>
+    <button mat-stroked-button color="primary" (click)="decisaoNegar()">NÃO</button>
+    <button mat-stroked-button color="primary" (click)="decisaoAceitar()">SIM</button>
   </div>
 </div>
