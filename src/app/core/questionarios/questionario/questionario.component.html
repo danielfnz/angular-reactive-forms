@@ -1,39 +1,32 @@
-<div class="text-center" *ngIf="!questionarioRespondido">
-  <h3>PERFIL DO INVESTIDOR - QUESTIONÁRIO</h3>
+<div class="text-center" *ngIf="!questionarioRespondido && !carregando">
+  <h3>{{questionario?.nomeQuestionario | uppercase}}</h3>
 
-  <div>
-    <p>1 - Qual o seu comportamento em relação ao seus investimentos?</p>
+  <div *ngFor="let pergunta of questionario?.perguntas; let ordem = index" class="perguntas">
+    <p class="titulo">{{ordem+1}} - {{pergunta?.titulo}}</p>
 
-    <mat-grid-list cols="3" rowHeight="fit" [style.height]="'50px'" [gutterSize]="'1px'">
-        <mat-radio-group>
-        <mat-grid-tile [colspan]="1" [rowspan]="1"><mat-radio-button value="1">Preservar meu dinheiro sem correr riscos</mat-radio-button></mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1"><mat-radio-button value="2">Ganhar mais dinheiro, assumindo riscos moderados</mat-radio-button></mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1"><mat-radio-button value="3">Ganhar mais dinheiro, assumindo riscos agressivos</mat-radio-button></mat-grid-tile>
+      <!-- <FORMATO RADIO> -->
+      <mat-radio-group *ngIf="pergunta.tipo == 'radio'" class="opcoes">
+          <mat-radio-button value="opcoes" *ngFor="let opcoes of pergunta.opcoes">{{opcoes}}</mat-radio-button>
       </mat-radio-group>
-    </mat-grid-list>
+      <!-- </FORMATO RADIO> -->
+
+      <!-- <FORMATO SELECT> -->
+      <mat-grid-list [cols]="2" rowHeight="fit" [style.height]="'100px'" [gutterSize]="'1px'" *ngIf="pergunta.tipo == 'select'">
+
+        <mat-grid-tile *ngFor="let perguntasSelect of pergunta.perguntas" [colspan]="2" [rowspan]="1">
+
+          <mat-form-field>
+            <mat-select placeholder="Selecione uma opção">
+              <mat-option [value]="opcoesSelect" *ngFor="let opcoesSelect of pergunta.opcoes">{{opcoesSelect}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+      <!-- </FORMATO SELECT> -->
+
     <hr>
   </div>
-
-  <div>
-    <p>2 - Por quanto tempo você deseja manter os seus investimentos?</p>
-    <mat-radio-group>
-      <mat-radio-button value="1">Até 1 ano</mat-radio-button>
-      <mat-radio-button value="2">de 1 a 3 anos</mat-radio-button>
-      <mat-radio-button value="3">de 1 a 3 anos</mat-radio-button>
-    </mat-radio-group>
-    <hr>
-  </div>
-
-  <div>
-    <p>3 - Quantos % desses investimentos você pode prcisar em um ano?</p>
-    <mat-radio-group>
-      <mat-radio-button value="1">Acima de 75%</mat-radio-button>
-      <mat-radio-button value="2">de 26% a 74%</mat-radio-button>
-      <mat-radio-button value="3">Até 25%</mat-radio-button>
-    </mat-radio-group>
-    <hr>
-  </div>
-
 </div>
 
 <div class="decisao-botoes" *ngIf="!questionarioRespondido">
@@ -41,4 +34,4 @@
   <button mat-flat-button color="primary" (click)="decisaoSalvar()">SALVAR</button>
 </div>
 
-<app-questionario-respondido *ngIf="questionarioRespondido"></app-questionario-respondido>
+<app-questionario-respondido *ngIf="questionarioRespondido && !carregando"></app-questionario-respondido>

@@ -6,6 +6,20 @@
     margin: 5px;
   }
 }
-mat-radio-button {
+
+/* mat-radio-button {
   margin: 25px;
+} */
+
+.perguntas {
+
+  .titulo {
+
+  }
+
+  .opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   }
 }

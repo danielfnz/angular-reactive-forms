@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
-  idQuestionario: any = 1;
+  idQuestionario: any = 2;
 
   constructor(
     private dialog: MatDialog,

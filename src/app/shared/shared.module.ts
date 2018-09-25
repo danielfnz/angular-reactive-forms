@@ -9,11 +9,13 @@ import { MatButtonModule,
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatRadioModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
