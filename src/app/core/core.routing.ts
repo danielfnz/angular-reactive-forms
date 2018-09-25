@@ -21,8 +21,8 @@ export const CoreRoutes: Routes = [{
       loadChildren: './inicio/inicio.module#InicioModule',
     },
     {
-      path: 'questionario',
-      loadChildren: './questionario/questionario.module#QuestionarioModule',
+      path: 'questionarios',
+      loadChildren: './questionarios/questionarios.module#QuestionariosModule',
     },
   ],
 }];

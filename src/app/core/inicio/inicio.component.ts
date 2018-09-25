@@ -19,6 +19,7 @@ export class InicioComponent implements OnInit {
   }
 
   decisaoNegar() {
+    // CLICOU EM NEGAR, ABRE O MODAL PARA ACEITAÇÃO DOS TERMOS
     const dialogRef = this.dialog.open(ModalTermosComponent, {
       data : {
         titulo : 'Termos',
@@ -33,7 +34,7 @@ export class InicioComponent implements OnInit {
   }
 
   decisaoAceitar() {
-    this.router.navigate(['/questionario']);
+    this.router.navigate(['/questionarios']);
   }
 
 }
