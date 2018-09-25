@@ -1,0 +1,11 @@
+.decisao-botoes {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  button {
+    margin: 5px;
+  }
+}
+mat-radio-button {
+  margin: 25px;
+}
