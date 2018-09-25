@@ -10,7 +10,7 @@ describe('QuestionarioNaoEncontradoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [QuestionarioNaoEncontradoComponent],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     })
     .compileComponents();
   }));
