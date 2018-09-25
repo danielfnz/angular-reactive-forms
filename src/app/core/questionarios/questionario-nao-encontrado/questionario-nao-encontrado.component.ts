@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-questionario-nao-encontrado',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionarioNaoEncontradoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _location: Location) {
+  }
 
   ngOnInit() {
+  }
+
+  voltarPagina() {
+    this._location.back();
   }
 
 }

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
+  idQuestionario: any = 1;
+
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -34,7 +36,7 @@ export class InicioComponent implements OnInit {
   }
 
   decisaoAceitar() {
-    this.router.navigate(['/questionarios']);
+    this.router.navigate([`/questionarios/${this.idQuestionario}`]);
   }
 
 }

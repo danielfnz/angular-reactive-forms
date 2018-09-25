@@ -6,7 +6,8 @@ import { MatButtonModule,
   MatCheckboxModule,
   MatGridListModule,
   MatDialogModule,
-  MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatRadioModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     MatGridListModule,
     MatDialogModule,
+    MatRadioModule,
   ],
   exports: [
     MatButtonModule,
@@ -25,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     MatGridListModule,
     MatDialogModule,
+    MatRadioModule,
   ],
   providers: [
     {

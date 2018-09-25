@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { QuestionarioRespondidoComponent } from './questionario-respondido/questionario-respondido.component';
 import { QuestionarioComponent } from './questionario/questionario.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ import { QuestionarioNaoEncontradoComponent } from './questionario-nao-encontrad
   imports: [
     CommonModule,
     QuestionarioRouting,
+    SharedModule,
   ],
   declarations: [
     QuestionarioComponent,
