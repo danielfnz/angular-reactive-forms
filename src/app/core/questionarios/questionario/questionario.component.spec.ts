@@ -11,7 +11,7 @@ describe('QuestionarioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionarioComponent,QuestionarioRespondidoComponent],
+      declarations: [QuestionarioComponent, QuestionarioRespondidoComponent],
       imports: [RouterTestingModule, SharedModule],
     })
     .compileComponents();
