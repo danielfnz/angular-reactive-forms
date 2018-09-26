@@ -3,17 +3,17 @@
 <app-loading *ngIf="carregando"></app-loading>
 <section class="questionario" *ngIf="!questionarioRespondido && !carregando && !erro">
   <form [formGroup]="form" class="formulario">
-    <h3>{{questionario?.nomeQuestionario | uppercase}}</h3>
+    <h3 class="bold">{{questionario?.nomeQuestionario | uppercase}}</h3>
 
     <div formArrayName="perguntas" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntas'); let ordem = index;">
       <div [formGroupName]="ordem">
-        <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo" [ordem]="ordem+1" [opcoes]="pergunta?.value?.opcoes"></app-pergunta-radio>
+        <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo" [opcoes]="pergunta?.value?.opcoes"></app-pergunta-radio>
       </div>
     </div>
 
     <div formArrayName="perguntasSelect" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntasSelect'); let ordem = index;">
       <div [formGroupName]="ordem">
-        <p class="titulo">{{ordem+1}} - {{pergunta?.value.titulo}}</p>
+        <p class="titulo">{{pergunta?.value.titulo}}</p>
         <div class="opcoes">
           <div class="select" *ngFor="let perguntaSelect of getControls(pergunta, 'perguntas');">
             <app-pergunta-select [form]="perguntaSelect" [opcoes]="pergunta.value?.opcoes" [titulo]="pergunta?.value.titulo"></app-pergunta-select>
