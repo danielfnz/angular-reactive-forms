@@ -8,26 +8,27 @@ import { MatButtonModule,
   MatDialogModule,
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatRadioModule} from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatGridListModule,
     MatDialogModule,
     MatRadioModule,
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatGridListModule,
     MatDialogModule,
     MatRadioModule,
   ],

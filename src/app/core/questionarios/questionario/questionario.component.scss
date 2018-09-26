@@ -1,25 +1,35 @@
-.decisao-botoes {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-  button {
-    margin: 5px;
-  }
+mat-radio-button {
+    margin: 15px;
 }
 
-/* mat-radio-button {
-  margin: 25px;
-} */
-
-.perguntas {
-
-  .titulo {
-
-  }
-
-  .opcoes {
+.questionario {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-around;
-   }
+    justify-content: center;
+    text-align: center;
+    .perguntas {
+        .titulo {
+            text-align: center;
+        }
+        .opcoes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            .select {
+              width: 50%;
+              mat-form-field {
+                width: 60%;
+              }
+            }
+        }
+    }
+    .decisao-botoes {
+        display: flex;
+        justify-content: flex-end;
+        align-content: flex-end;
+        button {
+            margin: 5px;
+        }
+    }
 }
