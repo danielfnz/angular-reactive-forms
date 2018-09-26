@@ -5,14 +5,13 @@
 
 // default theme:
 $primary: mat-palette($mat-deep-purple);
-$warn : #FFFF00;
 $muted : #777777;
 
 html,
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
 }
 p {
   color: $muted;
@@ -29,5 +28,6 @@ p {
 
 hr {
   border-top:1px dashed $muted !important;
+  margin: 1em 0 1em 0;
 }
 

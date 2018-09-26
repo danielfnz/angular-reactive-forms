@@ -1,7 +1,3 @@
-@angular/platform-browser@6.1.8
-MIT
-MIT
-
 rxjs@6.2.2
 Apache-2.0
 Apache License
@@ -207,6 +203,10 @@ Apache License
  limitations under the License.
 
 @angular/common@6.1.8
+MIT
+MIT
+
+@angular/platform-browser@6.1.8
 MIT
 MIT
 
