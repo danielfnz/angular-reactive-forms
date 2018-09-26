@@ -21,7 +21,7 @@ Questionários dinamicos para conhecer o perfil do investidor e sugerir decisõe
 
 ## Utilização
 
-Execute `yarn start` ou `ng serve` para testar a aplicação. 
+Execute  `ng serve` ou `yarn start` para testar a aplicação. 
 
 Navegue até `http://localhost:3000` 
 
@@ -54,5 +54,5 @@ Padronizar algumas configurações gerais entre vários editores*
 - [Travis CI](https://github.com/karma-runner/karma) - *Test and Deploy Your Code with Confidence*
 
 ## Licença
-[MIT](LICENSE.md)
+[MIT](LICENSE)
 
