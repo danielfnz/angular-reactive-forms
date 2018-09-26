@@ -61,6 +61,7 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
 
     this.questionarioServico.getQuestionarioById(this.questionarioId).subscribe((response: Questionarios) => {
       this.questionario = response;
+
       if (response) {
         Object.keys(this.form.value).map((campo) => {
           if (campo === 'perguntas') {
@@ -86,11 +87,10 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
 
         });
       }
-
-      console.log(this.form);
       this.carregando = false;
       this.erro = false;
-    },                                                                          (_error) => {
+    // tslint:disable-next-line:align
+    }, (_error) => {
       this.router.navigate(['404']);
       this.erro = true;
     });
@@ -140,7 +140,12 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
   }
 
   botaoSalvar() {
-    this.questionarioRespondido = true;
+    this.questionarioServico.updateQuestionario(this.questionarioId, this.form.value).then((sucesso) => {
+      this.questionarioRespondido = true;
+    }).catch((erro) => {
+      console.error(erro);
+      this.questionarioRespondido = false;
+    });
   }
 
   botaoVoltar() {
