@@ -1,11 +1,34 @@
-.decisao-botoes {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-  button {
-    margin: 5px;
-  }
-}
-mat-radio-button {
-  margin: 25px;
+.questionario {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    .formulario {
+        width: 80%;
+    }
+
+    .perguntas {
+        .titulo {
+            text-align: center;
+        }
+         .opcoes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            .select {
+              width: 50%;
+            }
+        }
+    }
+    .botoes {
+        display: flex;
+        justify-content: flex-end;
+        align-content: flex-end;
+        button {
+            margin: 5px;
+        }
+    }
 }

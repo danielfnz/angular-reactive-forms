@@ -1,44 +1,30 @@
-<div class="text-center" *ngIf="!questionarioRespondido">
-  <h3>PERFIL DO INVESTIDOR - QUESTIONÁRIO</h3>
 
-  <div>
-    <p>1 - Qual o seu comportamento em relação ao seus investimentos?</p>
+<app-questionario-respondido *ngIf="questionarioRespondido && !carregando && !erro"></app-questionario-respondido>
+<app-loading *ngIf="carregando"></app-loading>
+<section class="questionario" *ngIf="!questionarioRespondido && !carregando && !erro">
+  <form [formGroup]="form" class="formulario">
+    <h3>{{questionario?.nomeQuestionario | uppercase}}</h3>
 
-    <mat-grid-list cols="3" rowHeight="fit" [style.height]="'50px'" [gutterSize]="'1px'">
-        <mat-radio-group>
-        <mat-grid-tile [colspan]="1" [rowspan]="1"><mat-radio-button value="1">Preservar meu dinheiro sem correr riscos</mat-radio-button></mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1"><mat-radio-button value="2">Ganhar mais dinheiro, assumindo riscos moderados</mat-radio-button></mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1"><mat-radio-button value="3">Ganhar mais dinheiro, assumindo riscos agressivos</mat-radio-button></mat-grid-tile>
-      </mat-radio-group>
-    </mat-grid-list>
-    <hr>
-  </div>
+    <div formArrayName="perguntas" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntas'); let ordem = index;">
+      <div [formGroupName]="ordem">
+        <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo" [ordem]="ordem+1" [opcoes]="pergunta?.value?.opcoes"></app-pergunta-radio>
+      </div>
+    </div>
 
-  <div>
-    <p>2 - Por quanto tempo você deseja manter os seus investimentos?</p>
-    <mat-radio-group>
-      <mat-radio-button value="1">Até 1 ano</mat-radio-button>
-      <mat-radio-button value="2">de 1 a 3 anos</mat-radio-button>
-      <mat-radio-button value="3">de 1 a 3 anos</mat-radio-button>
-    </mat-radio-group>
-    <hr>
-  </div>
+    <div formArrayName="perguntasSelect" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntasSelect'); let ordem = index;">
+      <div [formGroupName]="ordem">
+        <p class="titulo">{{ordem+1}} - {{pergunta?.value.titulo}}</p>
+        <div class="opcoes">
+          <div class="select" *ngFor="let perguntaSelect of getControls(pergunta, 'perguntas');">
+            <app-pergunta-select [form]="perguntaSelect" [opcoes]="pergunta.value?.opcoes" [titulo]="pergunta?.value.titulo"></app-pergunta-select>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div>
-    <p>3 - Quantos % desses investimentos você pode prcisar em um ano?</p>
-    <mat-radio-group>
-      <mat-radio-button value="1">Acima de 75%</mat-radio-button>
-      <mat-radio-button value="2">de 26% a 74%</mat-radio-button>
-      <mat-radio-button value="3">Até 25%</mat-radio-button>
-    </mat-radio-group>
-    <hr>
-  </div>
-
-</div>
-
-<div class="decisao-botoes" *ngIf="!questionarioRespondido">
-  <button mat-stroked-button color="primary" (click)="decisaoVoltar()">VOLTAR</button>
-  <button mat-flat-button color="primary" (click)="decisaoSalvar()">SALVAR</button>
-</div>
-
-<app-questionario-respondido *ngIf="questionarioRespondido"></app-questionario-respondido>
+    <div class="botoes">
+      <button mat-stroked-button color="primary" (click)="botaoVoltar()">VOLTAR</button>
+      <button mat-flat-button color="primary" (click)="botaoSalvar()" [disabled]="!form.valid">SALVAR</button>
+    </div>
+  </form>
+</section>

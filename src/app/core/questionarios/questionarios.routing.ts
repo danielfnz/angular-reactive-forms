@@ -1,6 +1,7 @@
-import { QuestionarioNaoEncontradoComponent } from './questionario-nao-encontrado/questionario-nao-encontrado.component';
-import { RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { App404Component } from '../../erros/404/404.component';
 import { QuestionarioComponent } from './questionario/questionario.component';
 
 export const QuestionarioRoutes = [
@@ -9,7 +10,7 @@ export const QuestionarioRoutes = [
     data: {
       title: 'Questionários',
     },
-    component: QuestionarioNaoEncontradoComponent,
+    component: App404Component,
   },
   {
     path: ':id',

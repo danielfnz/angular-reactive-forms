@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuestionarioNaoEncontradoComponent } from './questionario-nao-encontrado.component';
+import { QuestionarioRespondidoComponent } from './questionario-respondido.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('QuestionarioNaoEncontradoComponent', () => {
-  let component: QuestionarioNaoEncontradoComponent;
-  let fixture: ComponentFixture<QuestionarioNaoEncontradoComponent>;
+describe('QuestionarioRespondidoComponent', () => {
+  let component: QuestionarioRespondidoComponent;
+  let fixture: ComponentFixture<QuestionarioRespondidoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionarioNaoEncontradoComponent],
+      declarations: [QuestionarioRespondidoComponent],
       imports: [RouterTestingModule],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuestionarioNaoEncontradoComponent);
+    fixture = TestBed.createComponent(QuestionarioRespondidoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

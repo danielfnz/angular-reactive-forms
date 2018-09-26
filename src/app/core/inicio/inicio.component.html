@@ -1,7 +1,7 @@
-<span class="text-center">
+<section class="text-center" *ngIf="!questionarioRespondido">
 
   <div style="margin-top:10%;">
-    <img src="assets/icons/checklist.svg" alt="Informações recebidas"  width="50px">
+    <img src="assets/icons/checklist.svg" alt="Informações recebidas" width="80px">
   </div>
 
   <p class="bold">
@@ -13,14 +13,17 @@
     <br> precisamos conhecer seu perfil de investidor</p>
 
   <p>São apenas 4 perguntas, que irão guiar todas as suas decisões de investimentos.</p>
-</span>
 
-<div class="decisao">
-  <div class="decisao-pergunta">
-    <p>Gostaria de responder ao Perfil do investidor?</p>
+  <div class="decisao">
+    <div class="decisao-pergunta">
+      <p>Gostaria de responder ao Perfil do investidor?</p>
+    </div>
+    <div class="decisao-botoes">
+      <button mat-stroked-button color="primary" (click)="decisaoNegar()">NÃO</button>
+      <button mat-stroked-button color="primary" (click)="decisaoAceitar()">SIM</button>
+    </div>
   </div>
-  <div class="decisao-botoes">
-    <button mat-stroked-button color="primary" (click)="decisaoNegar()">NÃO</button>
-    <button mat-stroked-button color="primary" (click)="decisaoAceitar()">SIM</button>
-  </div>
-</div>
+
+</section>
+
+<app-questionario-respondido *ngIf="questionarioRespondido"></app-questionario-respondido>

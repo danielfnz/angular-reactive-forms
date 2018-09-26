@@ -1,0 +1,8 @@
+<form [formGroup]="form" *ngIf="form">
+  <p>{{form.value.titulo}}</p>
+  <mat-form-field appearance="legacy">
+    <mat-select placeholder="Selecione uma opção" formControlName="resposta">
+      <mat-option [value]="opacao" *ngFor="let opacao of opcoes">{{opacao}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
