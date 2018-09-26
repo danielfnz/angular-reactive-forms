@@ -1,11 +1,11 @@
 import { SharedModule } from './../../shared/shared.module';
-import { QuestionarioRespondidoComponent } from './questionario-respondido/questionario-respondido.component';
 import { QuestionarioComponent } from './questionario/questionario.component';
 import { QuestionariosComponent } from './questionarios.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestionarioRouting } from './questionarios.routing';
-import { QuestionarioNaoEncontradoComponent } from './questionario-nao-encontrado/questionario-nao-encontrado.component';
+import { PerguntaSelectComponent } from './questionario/pergunta-select/pergunta-select.component';
+import { PerguntaRadioComponent } from './questionario/pergunta-radio/pergunta-radio.component';
 
 @NgModule({
   imports: [
@@ -16,8 +16,8 @@ import { QuestionarioNaoEncontradoComponent } from './questionario-nao-encontrad
   declarations: [
     QuestionarioComponent,
     QuestionariosComponent,
-    QuestionarioRespondidoComponent,
-    QuestionarioNaoEncontradoComponent,
+    PerguntaSelectComponent,
+    PerguntaRadioComponent,
   ],
 })
 export class QuestionariosModule { }

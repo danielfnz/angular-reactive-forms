@@ -1,40 +1,30 @@
-<section class="questionario" *ngIf="!questionarioRespondido && !carregando">
-  <form [formGroup]="form">
+
+<app-questionario-respondido *ngIf="questionarioRespondido && !carregando && !erro"></app-questionario-respondido>
+<app-loading *ngIf="carregando"></app-loading>
+<section class="questionario" *ngIf="!questionarioRespondido && !carregando && !erro">
+  <form [formGroup]="form" class="formulario">
     <h3>{{questionario?.nomeQuestionario | uppercase}}</h3>
 
-    <div formArrayName="perguntas" *ngFor="let pergunta of form.get('perguntas').controls; let ordem = index" class="perguntas">
+    <div formArrayName="perguntas" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntas'); let ordem = index;">
       <div [formGroupName]="ordem">
-        <p class="titulo">{{ordem+1}} - {{pergunta?.value.titulo}}</p>
-
-        <!-- <FORMATO RADIO> -->
-        <mat-radio-group *ngIf="pergunta?.value?.tipo == 'radio'" class="opcoes" formControlName="resposta">
-          <mat-radio-button [value]="opcoes" *ngFor="let opcoes of pergunta?.value?.opcoes">{{opcoes}}</mat-radio-button>
-        </mat-radio-group>
-        <!-- </FORMATO RADIO> -->
-
-        <!-- <FORMATO SELECT> -->
-          <!-- ADICIONAR FOORM ARRAY NAME -->
-        <div class="opcoes" *ngIf="pergunta?.value?.tipo == 'select'">
-          <div class="select" *ngFor="let perguntasSelect of pergunta?.value?.perguntas">
-            <p>{{perguntasSelect.titulo}}</p>
-            <mat-form-field appearance="legacy">
-              <mat-select placeholder="Selecione uma opção" formControlName="resposta">
-                <mat-option [value]="opcoesSelect" *ngFor="let opcoesSelect of pergunta.value?.opcoes">{{opcoesSelect}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <!-- </FORMATO SELECT> -->
-
-        <hr>
+        <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo" [ordem]="ordem+1" [opcoes]="pergunta?.value?.opcoes"></app-pergunta-radio>
       </div>
     </div>
 
-    <div class="decisao-botoes">
-      <button mat-stroked-button color="primary" (click)="decisaoVoltar()">VOLTAR</button>
-      <button mat-flat-button color="primary" (click)="decisaoSalvar()" [disabled]="!form.valid">SALVAR</button>
+    <div formArrayName="perguntasSelect" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntasSelect'); let ordem = index;">
+      <div [formGroupName]="ordem">
+        <p class="titulo">{{ordem+1}} - {{pergunta?.value.titulo}}</p>
+        <div class="opcoes">
+          <div class="select" *ngFor="let perguntaSelect of getControls(pergunta, 'perguntas');">
+            <app-pergunta-select [form]="perguntaSelect" [opcoes]="pergunta.value?.opcoes" [titulo]="pergunta?.value.titulo"></app-pergunta-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="botoes">
+      <button mat-stroked-button color="primary" (click)="botaoVoltar()">VOLTAR</button>
+      <button mat-flat-button color="primary" (click)="botaoSalvar()" [disabled]="!form.valid">SALVAR</button>
     </div>
   </form>
 </section>
-
-<app-questionario-respondido *ngIf="questionarioRespondido && !carregando"></app-questionario-respondido>

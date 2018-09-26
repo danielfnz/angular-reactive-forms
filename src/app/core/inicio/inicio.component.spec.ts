@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InicioComponent } from './inicio.component';
 import { MatDialogModule, MatCheckboxModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('InicioComponent', () => {
   let component: InicioComponent;
@@ -15,8 +16,7 @@ describe('InicioComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule,
-        MatDialogModule,
-        MatCheckboxModule,
+        SharedModule,
       ],
     })
     .compileComponents();

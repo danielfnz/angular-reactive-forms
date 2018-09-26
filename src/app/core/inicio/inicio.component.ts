@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class InicioComponent implements OnInit {
 
   idQuestionario: any = 2;
+  questionarioRespondido = false;
 
   constructor(
     private dialog: MatDialog,
@@ -31,7 +32,7 @@ export class InicioComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      this.router.navigate(['/inicio/questionariorespondido']);
     });
   }
 

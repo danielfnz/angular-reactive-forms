@@ -2,11 +2,13 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { QuestionariosService } from './questionarios.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('Service: Questionarios', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [QuestionariosService]
+      providers: [QuestionariosService],
+      imports: [HttpClientModule],
     });
   });
 

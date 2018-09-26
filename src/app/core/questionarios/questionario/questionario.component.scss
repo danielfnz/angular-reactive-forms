@@ -1,30 +1,29 @@
-mat-radio-button {
-    margin: 15px;
-}
-
 .questionario {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
+    align-items: center;
+
+    .formulario {
+        width: 80%;
+    }
+
     .perguntas {
         .titulo {
             text-align: center;
         }
-        .opcoes {
+         .opcoes {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             .select {
               width: 50%;
-              mat-form-field {
-                width: 60%;
-              }
             }
         }
     }
-    .decisao-botoes {
+    .botoes {
         display: flex;
         justify-content: flex-end;
         align-content: flex-end;

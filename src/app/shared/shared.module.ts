@@ -10,6 +10,9 @@ import { MatButtonModule,
   MatRadioModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { App404Component } from '../erros/404/404.component';
+import { QuestionarioRespondidoComponent } from './components/questionario-respondido/questionario-respondido.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -31,18 +34,21 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatDialogModule,
     MatRadioModule,
+    App404Component,
+    QuestionarioRespondidoComponent,
+    LoadingComponent,
   ],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {
         autoFocus : false,
-        maxWidth : '500px',
+        maxWidth : '600px',
         disableClose : true,
         hasBackdrop: true,
       },
     },
   ],
-  declarations: [ModalTermosComponent],
+  declarations: [ModalTermosComponent, App404Component, QuestionarioRespondidoComponent, LoadingComponent],
   entryComponents: [ModalTermosComponent],
 })
 export class SharedModule { }
