@@ -1,7 +1,7 @@
-<p class="titulo">{{ordem}} - {{titulo}}</p>
+<p class="titulo">{{titulo}}</p>
 <form [formGroup]="form" *ngIf="form">
   <mat-radio-group class="opcoes" formControlName="resposta">
-    <mat-radio-button [value]="opcao" *ngFor="let opcao of opcoes">{{opcao}}</mat-radio-button>
+    <mat-radio-button [value]="opcao" *ngFor="let opcao of opcoes" color="primary">{{opcao}}</mat-radio-button>
   </mat-radio-group>
 </form>
 <hr>
