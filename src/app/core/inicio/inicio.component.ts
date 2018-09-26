@@ -32,7 +32,9 @@ export class InicioComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.router.navigate(['/inicio/questionariorespondido']);
+      if (result) {
+        this.router.navigate(['/inicio/questionariorespondido']);
+      }
     });
   }
 
