@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
-  idQuestionario: any = 2;
+  idQuestionario: any = '5bac1a4b31000055006545cf';
   questionarioRespondido = false;
+  loading = true;
 
   constructor(
     private dialog: MatDialog,
@@ -19,10 +20,14 @@ export class InicioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // APENAS PARA SIMULAR O CARREGAMENTO
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    },         2000);
   }
 
   decisaoNegar() {
-    // CLICOU EM NEGAR, ABRE O MODAL PARA ACEITAÇÃO DOS TERMOS
     const dialogRef = this.dialog.open(ModalTermosComponent, {
       data : {
         titulo : 'Termos',

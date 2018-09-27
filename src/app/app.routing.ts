@@ -6,12 +6,10 @@ import { App404Component } from './erros/404/404.component';
 const AppRoutes: Routes = [
   {
     path: '',
-    data: { title: '' },
     component: CoreComponent,
   },
   {
     path: '404',
-    data: { title: '404 - Página não encontrada' },
     component: App404Component,
   },
   {

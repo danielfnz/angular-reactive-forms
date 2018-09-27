@@ -1,10 +1,10 @@
+import { Questionario } from './questionario.interface';
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
 
 import { QuestionariosService } from '../questionarios.service';
-import { Questionarios } from '../questionarios.interface';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
@@ -13,30 +13,28 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./questionario.component.scss'],
 })
 export class QuestionarioComponent implements OnInit, OnDestroy {
-
-  questionarioId: number;
-  questionario: Questionarios;
+  questionarioId: any;
+  questionario: Questionario;
 
   isAlive = true;
-  carregando = true;
+  loading = true;
+  erro: boolean;
   questionarioRespondido = false;
 
   form: FormGroup;
-  erro: boolean;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private _location: Location,
-    private questionarioServico: QuestionariosService,
+    private questionarioService: QuestionariosService,
     private formBuilder: FormBuilder,
     private router: Router,
-  ) { }
+  ) {}
 
   ngOnInit() {
-
     this.activatedRoute.params
-      .pipe(
-        takeWhile(() => this.isAlive),
-      ).subscribe((values) => {
+      .pipe(takeWhile(() => this.isAlive))
+      .subscribe((values) => {
         this.questionarioId = values.id;
 
         if (this.questionarioId) {
@@ -56,50 +54,49 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
   }
 
   carregarDados(): any {
-    this.carregando = true;
+    this.loading = true;
     this.erro = false;
 
-    this.questionarioServico.getQuestionarioById(this.questionarioId).subscribe((response: Questionarios) => {
-      this.questionario = response;
+    this.questionarioService.getQuestionarioById(this.questionarioId).subscribe(
+      (questionario: Questionario) => {
+        this.questionario = questionario;
 
-      if (response) {
-        Object.keys(this.form.value).map((campo) => {
-          if (campo === 'perguntas') {
-            for (const iterator of response[campo]) {
-              this.addPergunta();
-            }
-          }
+        if (this.questionario != null) {
+          this.popularFormulario(this.questionario);
+        }
 
-          if (campo === 'perguntasSelect') {
-            // tslint:disable-next-line:no-increment-decrement
-            for (let index = 0; index < response[campo].length; index++) {
-              const element = response[campo][index];
-              this.addPerguntaSelect();
-              for (const iterator2 of element.perguntas) {
-                this.addPerguntaSelectFilha(this.getControls(this.form.controls['perguntasSelect'], `${index}`).perguntas);
-              }
-            }
-          }
+        this.loading = false;
+        this.erro = false;
+        // tslint:disable-next-line:align
+      },
+      (_error) => {
+        this.router.navigate(['404']);
+        this.erro = true;
+      },
+    );
+  }
 
-          this.form.patchValue({
-            [campo]: response[campo],
-          });
-
-        });
+  popularFormulario(questionario) {
+    Object.keys(this.form.value).map((campo) => {
+      if (campo === 'perguntas') {
+        this.popularPergunta(campo);
       }
-      this.carregando = false;
-      this.erro = false;
-    // tslint:disable-next-line:align
-    }, (_error) => {
-      this.router.navigate(['404']);
-      this.erro = true;
+
+      if (campo === 'perguntasSelect') {
+        this.popularPerguntaSelect(campo);
+      }
+
+      this.form.patchValue({
+        [campo]: questionario[campo],
+      });
     });
   }
 
-  // Cria um formulario de perguntas, dentro do FormArray(perguntas)
-  addPergunta(): void {
-    const perguntas = this.form.get('perguntas') as FormArray;
-    perguntas.push(this.criarPergunta());
+  popularPergunta(campo) {
+    for (const iterator of this.questionario[campo]) {
+      const perguntas = this.form.get('perguntas') as FormArray;
+      perguntas.push(this.criarPergunta());
+    }
   }
 
   criarPergunta(): FormGroup {
@@ -111,10 +108,21 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Cria um formulario de perguntas, dentro do FormArray(perguntasSelect)
-  addPerguntaSelect(): void {
-    const perguntasSelect = this.form.get('perguntasSelect') as FormArray;
-    perguntasSelect.push(this.criarPerguntaSelect());
+  popularPerguntaSelect(campo) {
+    // tslint:disable-next-line:no-increment-decrement
+    for (let index = 0; index < this.questionario[campo].length; index++) {
+      const element = this.questionario[campo][index];
+
+      const perguntasSelect = this.form.get('perguntasSelect') as FormArray;
+      perguntasSelect.push(this.criarPerguntaSelect());
+
+      for (const iterator2 of element.perguntas) {
+        this.addPerguntaSelectFilha(
+          this.getControls(
+            this.form.controls['perguntasSelect'], `${index}`).perguntas,
+        );
+      }
+    }
   }
 
   criarPerguntaSelect(): FormGroup {
@@ -126,7 +134,6 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Cria um formulario de perguntas, dentro do FormArray filho(perguntas) de (perguntasSelect)
   addPerguntaSelectFilha(control): void {
     const perguntasSelect = control as FormArray;
     perguntasSelect.push(this.criarPerguntaSubSelect());
@@ -140,12 +147,15 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
   }
 
   botaoSalvar() {
-    this.questionarioServico.updateQuestionario(this.questionarioId, this.form.value).then((sucesso) => {
-      this.questionarioRespondido = true;
-    }).catch((erro) => {
-      console.error(erro);
-      this.questionarioRespondido = false;
-    });
+    this.questionarioService
+      .updateQuestionario(this.questionarioId, this.form.value)
+      .then((sucesso) => {
+        this.questionarioRespondido = true;
+      })
+      .catch((erro) => {
+        console.error(erro);
+        this.questionarioRespondido = false;
+      });
   }
 
   botaoVoltar() {

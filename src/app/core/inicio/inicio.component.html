@@ -1,8 +1,9 @@
-<section class="text-center" *ngIf="!questionarioRespondido">
+<app-loading *ngIf="loading"></app-loading>
+<app-questionario-respondido *ngIf="questionarioRespondido"></app-questionario-respondido>
 
-  <div style="margin-top:10%;">
-    <img src="assets/icons/checklist.svg" alt="Informações recebidas" width="80px">
-  </div>
+<section class="text-center" *ngIf="!questionarioRespondido && !loading">
+
+  <img src="assets/icons/checklist.svg" alt="Informações recebidas" width="80px">
 
   <h3 class="bold">
     INFORMAÇÕES RECEBIDAS!
@@ -25,5 +26,3 @@
   </div>
 
 </section>
-
-<app-questionario-respondido *ngIf="questionarioRespondido"></app-questionario-respondido>

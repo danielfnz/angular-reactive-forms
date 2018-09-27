@@ -1,7 +1,9 @@
 <p class="titulo">{{titulo}}</p>
 <form [formGroup]="form" *ngIf="form">
   <mat-radio-group class="opcoes" formControlName="resposta">
-    <mat-radio-button [value]="opcao" *ngFor="let opcao of opcoes" color="primary">{{opcao}}</mat-radio-button>
+    <div *ngFor="let opcao of opcoes" style="flex: 1">
+      <mat-radio-button [value]="opcao" color="primary">{{opcao}}</mat-radio-button>
+    </div>
   </mat-radio-group>
 </form>
 <hr>

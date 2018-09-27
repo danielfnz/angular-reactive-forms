@@ -1,34 +1,93 @@
 .questionario {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
     align-items: center;
+    text-align: center;
 
     .formulario {
-        width: 80%;
-    }
-
-    .perguntas {
-        .titulo {
-            text-align: center;
+        width: 60%;
+        .perguntas {
+            .titulo {
+                text-align: center;
+            }
+            .opcoes {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .select {
+                    width: 50%;
+                }
+            }
         }
-         .opcoes {
+        .botoes {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            .select {
-              width: 50%;
+            justify-content: flex-end;
+            align-content: flex-end;
+            button {
+                margin: 5px;
             }
         }
     }
-    .botoes {
-        display: flex;
-        justify-content: flex-end;
-        align-content: flex-end;
-        button {
-            margin: 5px;
-        }
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+  .questionario {
+    .formulario {
+      width: 60%;
     }
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+  .questionario {
+    .formulario {
+      width: 60%;
+    }
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  .questionario {
+    .formulario {
+      width: 70%;
+    }
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+  .questionario {
+    .formulario {
+      width: 70%;
+    }
+  }
+}
+
+/* iPhone 5 (portrait &amp; landscape)----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+/* STYLES GO HERE */
+.questionario {
+  .formulario {
+    width: 80%;
+  }
+}
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .questionario {
+    .formulario {
+      width: 90%;
+    }
+  }
 }

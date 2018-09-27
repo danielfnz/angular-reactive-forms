@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Questionarios } from './questionarios.interface';
 import { Observable, Subject } from 'rxjs';
+import { Questionario } from './questionario/questionario.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionariosService {
+  private readonly API = `${environment.API}`;
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://0b3e8e6c-c195-49f5-b861-24b812e411c1.mock.pstmn.io/questionarios';
 
-  getQuestionarios() {
-    return this.http.get(this.baseUrl);
+  getQuestionarios(): Observable<Questionario>  {
+    return this.http.get<Questionario>(this.API);
   }
 
-  getQuestionarioById(id: any): Observable<any> {
+  getQuestionarioById(id: any): Observable<Questionario> {
     const subject = new Subject<any>();
 
     if (localStorage.getItem(id)) {
@@ -25,23 +26,26 @@ export class QuestionariosService {
       return subject.asObservable();
     // tslint:disable-next-line:no-else-after-return
     } else {
-      return this.http.get(`${this.baseUrl}/${id}`);
+      return this.http.get<Questionario>(`${this.API}/${id}`);
     }
   }
 
-  createQuestionario(questionario: Questionarios) {
-    return this.http.post(this.baseUrl, questionario);
+  createQuestionario(questionario: Questionario): Observable<Questionario> {
+    return this.http.post<Questionario>(this.API, questionario);
   }
 
-  updateQuestionario(key: any, data: any) {
+  updateQuestionario(id: string, questionario: Questionario): Promise<any> {
     return new Promise((resolve, reject) => {
-      localStorage.setItem(key, JSON.stringify(data));
+      localStorage.setItem(id, JSON.stringify(questionario));
       resolve();
     });
   }
 
-  deleteQuestionario(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+  deleteQuestionario(id: string): Promise<any>  {
+    return new Promise((resolve, reject) => {
+      localStorage.removeItem(id);
+      resolve();
+    });
   }
 
 }
