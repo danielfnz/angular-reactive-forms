@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API : 'http://www.mocky.io/v2',
+  API : 'https://www.mocky.io/v2',
 };
