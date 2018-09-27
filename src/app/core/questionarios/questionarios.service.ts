@@ -37,14 +37,14 @@ export class QuestionariosService {
   updateQuestionario(id: string, questionario: Questionario): Promise<any> {
     return new Promise((resolve, reject) => {
       localStorage.setItem(id, JSON.stringify(questionario));
-      resolve();
+      resolve(localStorage.getItem(id));
     });
   }
 
   deleteQuestionario(id: string): Promise<any>  {
     return new Promise((resolve, reject) => {
       localStorage.removeItem(id);
-      resolve();
+      resolve(localStorage.getItem(id));
     });
   }
 
