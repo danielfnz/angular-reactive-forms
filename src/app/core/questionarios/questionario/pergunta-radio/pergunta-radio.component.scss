@@ -1,3 +1,11 @@
-mat-radio-button {
-    margin: 15px;
+mat-radio-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    mat-radio-button {
+        margin: 15px;
+        display: flex;
+        justify-content: flex-start;
+    }
 }

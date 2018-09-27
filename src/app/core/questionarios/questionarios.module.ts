@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { QuestionarioRouting } from './questionarios.routing';
 import { PerguntaSelectComponent } from './questionario/pergunta-select/pergunta-select.component';
 import { PerguntaRadioComponent } from './questionario/pergunta-radio/pergunta-radio.component';
+import { QuestionarioNovoComponent } from './questionario-novo/questionario-novo.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { PerguntaRadioComponent } from './questionario/pergunta-radio/pergunta-r
     QuestionariosComponent,
     PerguntaSelectComponent,
     PerguntaRadioComponent,
+    QuestionarioNovoComponent,
   ],
 })
 export class QuestionariosModule { }

@@ -3,22 +3,12 @@ import { RouterModule } from '@angular/router';
 
 import { App404Component } from '../../erros/404/404.component';
 import { QuestionarioComponent } from './questionario/questionario.component';
+import { QuestionarioNovoComponent } from './questionario-novo/questionario-novo.component';
 
 export const QuestionarioRoutes = [
-  {
-    path: '',
-    data: {
-      title: 'Questionários',
-    },
-    component: App404Component,
-  },
-  {
-    path: ':id',
-    data: {
-      title: 'Responder questionário',
-    },
-    component: QuestionarioComponent,
-  },
+  { path: '', component: App404Component },
+  { path: 'novo', component: QuestionarioNovoComponent },
+  { path: ':id',  component: QuestionarioComponent },
 ];
 
 export const QuestionarioRouting: ModuleWithProviders = RouterModule.forChild(QuestionarioRoutes);

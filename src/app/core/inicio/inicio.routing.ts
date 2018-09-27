@@ -3,18 +3,15 @@ import { InicioComponent } from './inicio.component';
 import { ModuleWithProviders } from '@angular/core';
 import { QuestionarioRespondidoComponent } from '../../shared/components/questionario-respondido/questionario-respondido.component';
 
-export const InicioRoutes = [{
-  path: '',
-  data: {
-    title: 'Inicio',
+export const InicioRoutes = [
+  {
+    path: '',
+    component: InicioComponent,
   },
-  component: InicioComponent,
-}, {
-  path: 'questionariorespondido',
-  data: {
-    title: 'Inicio',
+  {
+    path: 'questionariorespondido',
+    component: QuestionarioRespondidoComponent,
   },
-  component: QuestionarioRespondidoComponent,
-}];
+];
 
 export const InicioRouting: ModuleWithProviders = RouterModule.forChild(InicioRoutes);

@@ -23,7 +23,7 @@ Questionários dinamicos para conhecer o perfil do investidor e sugerir decisõe
 
 Execute  `ng serve` ou `yarn start` para testar a aplicação. 
 
-Navegue até `http://localhost:3000` 
+Navegue até `http://localhost:4200` 
 
 ## Verificar padrões de código
 

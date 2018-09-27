@@ -9,7 +9,7 @@ import { Observable, Subject } from 'rxjs';
 export class QuestionariosService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://0b3e8e6c-c195-49f5-b861-24b812e411c1.mock.pstmn.io/questionarios';
+  baseUrl = 'http://www.mocky.io/v2';
 
   getQuestionarios() {
     return this.http.get(this.baseUrl);
@@ -33,15 +33,18 @@ export class QuestionariosService {
     return this.http.post(this.baseUrl, questionario);
   }
 
-  updateQuestionario(key: any, data: any) {
+  updateQuestionario(id: string, data: any) {
     return new Promise((resolve, reject) => {
-      localStorage.setItem(key, JSON.stringify(data));
+      localStorage.setItem(id, JSON.stringify(data));
       resolve();
     });
   }
 
-  deleteQuestionario(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+  deleteQuestionario(id: string) {
+    return new Promise((resolve, reject) => {
+      localStorage.removeItem(id);
+      resolve();
+    });
   }
 
 }

@@ -1,12 +1,12 @@
 
-<app-questionario-respondido *ngIf="questionarioRespondido && !carregando && !erro"></app-questionario-respondido>
-<app-loading *ngIf="carregando"></app-loading>
-<section class="questionario" *ngIf="!questionarioRespondido && !carregando && !erro">
+<app-questionario-respondido *ngIf="questionarioRespondido && !loading && !erro"></app-questionario-respondido>
+<app-loading *ngIf="loading"></app-loading>
+<section class="questionario" *ngIf="!questionarioRespondido && !loading && !erro">
   <form [formGroup]="form" class="formulario">
     <h3 class="bold">{{questionario?.nomeQuestionario | uppercase}}</h3>
 
     <div formArrayName="perguntas" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntas'); let ordem = index;">
-      <div [formGroupName]="ordem">
+      <div [formGroupName]="ordem" style="width:100%">
         <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo" [opcoes]="pergunta?.value?.opcoes"></app-pergunta-radio>
       </div>
     </div>
