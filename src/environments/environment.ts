@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API : 'http://www.mocky.io/v2',
+  API : 'https://www.mocky.io/v2',
 };
 /*
  * For easier debugging in development mode, you can import the following file
