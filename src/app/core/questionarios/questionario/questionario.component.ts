@@ -1,6 +1,6 @@
-import { Questionario } from './questionario.interface';
+import { Questionario } from './../../../shared/models/questionario.interface';
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./questionario.component.scss'],
 })
 export class QuestionarioComponent implements OnInit, OnDestroy {
-  questionarioId: any;
+  @Input() questionarioId: string;
   questionario: Questionario;
 
   isAlive = true;
@@ -32,7 +32,12 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params
+
+    if (this.questionarioId) {
+      this.carregarDados();
+
+    } else {
+      this.activatedRoute.params
       .pipe(takeWhile(() => this.isAlive))
       .subscribe((values) => {
         this.questionarioId = values.id;
@@ -41,11 +46,11 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
           this.carregarDados();
         }
       });
+    }
 
     this.form = this.formBuilder.group({
       nomeQuestionario: [null, Validators.required],
       perguntas: this.formBuilder.array([]),
-      perguntasSelect: this.formBuilder.array([]),
     });
   }
 
@@ -67,7 +72,6 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
 
         this.loading = false;
         this.erro = false;
-        // tslint:disable-next-line:align
       },
       (_error) => {
         this.router.navigate(['404']);
@@ -81,11 +85,6 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
       if (campo === 'perguntas') {
         this.popularPergunta(campo);
       }
-
-      if (campo === 'perguntasSelect') {
-        this.popularPerguntaSelect(campo);
-      }
-
       this.form.patchValue({
         [campo]: questionario[campo],
       });
@@ -93,53 +92,44 @@ export class QuestionarioComponent implements OnInit, OnDestroy {
   }
 
   popularPergunta(campo) {
-    for (const iterator of this.questionario[campo]) {
-      const perguntas = this.form.get('perguntas') as FormArray;
-      perguntas.push(this.criarPergunta());
-    }
-  }
-
-  criarPergunta(): FormGroup {
-    return this.formBuilder.group({
-      titulo: [null, Validators.required],
-      tipo: [null, Validators.required],
-      opcoes: [null, Validators.required],
-      resposta: [null, Validators.required],
-    });
-  }
-
-  popularPerguntaSelect(campo) {
-    // tslint:disable-next-line:no-increment-decrement
+    const perguntas = this.form.get('perguntas') as FormArray;
+  // tslint:disable-next-line:no-increment-decrement
     for (let index = 0; index < this.questionario[campo].length; index++) {
       const element = this.questionario[campo][index];
 
-      const perguntasSelect = this.form.get('perguntasSelect') as FormArray;
-      perguntasSelect.push(this.criarPerguntaSelect());
+      if (element.tipo === 'radio') {
+        perguntas.push(this.criaPergunta(Validators.required));
 
-      for (const iterator2 of element.perguntas) {
-        this.addPerguntaSelectFilha(
-          this.getControls(
-            this.form.controls['perguntasSelect'], `${index}`).perguntas,
-        );
+      } else if (element.tipo === 'select') {
+        perguntas.push(this.criaPergunta(null));
+
+        for (const iterator2 of element.perguntas) {
+          this.addPerguntaSelect(
+            this.getControls(
+              this.form.controls['perguntas'], `${index}`).perguntas,
+          );
+        }
       }
+
     }
   }
 
-  criarPerguntaSelect(): FormGroup {
+  criaPergunta(respostaRequired): FormGroup {
     return this.formBuilder.group({
       titulo: [null, Validators.required],
       tipo: [null, Validators.required],
       opcoes: [null, Validators.required],
+      resposta: [null, respostaRequired],
       perguntas: this.formBuilder.array([]),
     });
   }
 
-  addPerguntaSelectFilha(control): void {
+  addPerguntaSelect(control): void {
     const perguntasSelect = control as FormArray;
-    perguntasSelect.push(this.criarPerguntaSubSelect());
+    perguntasSelect.push(this.criarPerguntaSelect());
   }
 
-  criarPerguntaSubSelect(): FormGroup {
+  criarPerguntaSelect(): FormGroup {
     return this.formBuilder.group({
       titulo: [null, Validators.required],
       resposta: [null, Validators.required],

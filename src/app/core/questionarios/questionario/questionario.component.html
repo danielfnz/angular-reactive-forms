@@ -1,25 +1,25 @@
 
 <app-questionario-respondido *ngIf="questionarioRespondido && !loading && !erro"></app-questionario-respondido>
 <app-loading *ngIf="loading"></app-loading>
+
 <section class="questionario" *ngIf="!questionarioRespondido && !loading && !erro">
   <form [formGroup]="form" class="formulario">
     <h3 class="bold">{{questionario?.nomeQuestionario | uppercase}}</h3>
 
     <div formArrayName="perguntas" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntas'); let ordem = index;">
-      <div [formGroupName]="ordem" style="width:100%">
-        <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo" [opcoes]="pergunta?.value?.opcoes"></app-pergunta-radio>
+      <div [formGroupName]="ordem" style="width:100%" *ngIf="pergunta?.value?.tipo == 'radio'">
+        <app-pergunta-radio [form]="pergunta" [titulo]="pergunta?.value.titulo"  [opcoes]="pergunta?.value?.opcoes" [ordem]="ordem+1"></app-pergunta-radio>
       </div>
-    </div>
 
-    <div formArrayName="perguntasSelect" class="perguntas" *ngFor="let pergunta of getControls(form, 'perguntasSelect'); let ordem = index;">
-      <div [formGroupName]="ordem">
-        <p class="titulo">{{pergunta?.value.titulo}}</p>
+      <div [formGroupName]="ordem" *ngIf="pergunta?.value?.tipo == 'select'">
+        <p class="titulo">{{ordem+1}} - {{pergunta?.value.titulo}}</p>
         <div class="opcoes">
           <div class="select" *ngFor="let perguntaSelect of getControls(pergunta, 'perguntas');">
             <app-pergunta-select [form]="perguntaSelect" [opcoes]="pergunta.value?.opcoes" [titulo]="pergunta?.value.titulo"></app-pergunta-select>
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="botoes">

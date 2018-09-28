@@ -1,7 +1,7 @@
+import { Questionario } from './../../shared/models/questionario.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Questionario } from './questionario/questionario.interface';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class QuestionariosService {
     return this.http.get<Questionario>(this.API);
   }
 
-  getQuestionarioById(id: any): Observable<Questionario> {
-    const subject = new Subject<any>();
+  getQuestionarioById(id: string): Observable<Questionario> {
+    const subject = new Subject<Questionario>();
 
     if (localStorage.getItem(id)) {
       setTimeout(() => {
@@ -34,17 +34,17 @@ export class QuestionariosService {
     return this.http.post<Questionario>(this.API, questionario);
   }
 
-  updateQuestionario(id: string, questionario: Questionario): Promise<any> {
+  updateQuestionario(id: string, questionario: Questionario): Promise<Questionario> {
     return new Promise((resolve, reject) => {
       localStorage.setItem(id, JSON.stringify(questionario));
-      resolve(localStorage.getItem(id));
+      resolve(JSON.parse(localStorage.getItem(id)));
     });
   }
 
-  deleteQuestionario(id: string): Promise<any>  {
+  deleteQuestionario(id: string): Promise<Questionario>  {
     return new Promise((resolve, reject) => {
       localStorage.removeItem(id);
-      resolve(localStorage.getItem(id));
+      resolve(JSON.parse(localStorage.getItem(id)));
     });
   }
 
