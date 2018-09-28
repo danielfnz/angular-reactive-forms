@@ -1,3 +1,4 @@
+import { QuestionarioExemploComponent } from './questionario-exemplo/questionario-exemplo.component';
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -8,6 +9,7 @@ import { QuestionarioNovoComponent } from './questionario-novo/questionario-novo
 export const QuestionarioRoutes = [
   { path: '', component: App404Component },
   { path: 'novo', component: QuestionarioNovoComponent },
+  { path: 'exemplo', component: QuestionarioExemploComponent },
   { path: ':id',  component: QuestionarioComponent },
 ];
 

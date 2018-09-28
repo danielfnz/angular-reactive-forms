@@ -7,6 +7,7 @@ import { QuestionarioRouting } from './questionarios.routing';
 import { PerguntaSelectComponent } from './questionario/pergunta-select/pergunta-select.component';
 import { PerguntaRadioComponent } from './questionario/pergunta-radio/pergunta-radio.component';
 import { QuestionarioNovoComponent } from './questionario-novo/questionario-novo.component';
+import { QuestionarioExemploComponent } from './questionario-exemplo/questionario-exemplo.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { QuestionarioNovoComponent } from './questionario-novo/questionario-novo
     PerguntaSelectComponent,
     PerguntaRadioComponent,
     QuestionarioNovoComponent,
+    QuestionarioExemploComponent,
   ],
 })
 export class QuestionariosModule { }
