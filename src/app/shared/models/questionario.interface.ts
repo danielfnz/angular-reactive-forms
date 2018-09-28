@@ -2,7 +2,6 @@ export interface Questionario {
   id?: string;
   nomeQuestionario: string;
   perguntas?: Pergunta[];
-  perguntasSelect?: Pergunta[];
 }
 
 export interface Pergunta {
