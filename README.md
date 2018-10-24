@@ -1,5 +1,5 @@
 # Perfil do investidor - Questionários
-[![Build Status](https://travis-ci.com/danielfnz/cedro-test.svg)](https://travis-ci.com/danielfnz/cedro-test) [![Style Guide](https://badgen.net/badge/eslint/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![Build Status](https://travis-ci.com/danielfnz/cedro-test.svg)](https://travis-ci.com/danielfnz/angular-reactive-forms) [![Style Guide](https://badgen.net/badge/eslint/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
 
 
 
@@ -9,7 +9,7 @@ Questionários dinamicos para conhecer o perfil do investidor e sugerir decisõe
 ## Instalação
 
 ### Pré-requisitos
-1 - Clone o repositório `git clone https://github.com/danielfnz/cedro-test.git`
+1 - Clone o repositório `git clone https://github.com/danielfnz/angular-reactive-forms.git`
 
 2 - Esse projeto é desenvolvido utilizando o framework Angular 6, portanto, para baixar os pacotes e executá-lo é necessário possuir o `Node` instalado.
 
