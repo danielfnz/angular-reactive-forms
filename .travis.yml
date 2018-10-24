@@ -20,13 +20,13 @@ cache:
 script:
   - ng lint
   - ng test --watch=false
-  - ng build --prod --base-href https://danielfnz.github.io/cedro-test/
+  - ng build --prod --base-href https://danielfnz.github.io/angular-reactive-forms/
 
 deploy:
   provider: pages
   skip-cleanup: true
   github_token: $GITHUB_TOKEN
   keep-history: true
-  local-dir: ./dist/cedro-test
+  local-dir: ./dist/angular-reactive-forms
   on:
     branch: master
