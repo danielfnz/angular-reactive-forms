@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./../assets/scss/global.scss'],
 })
 export class AppComponent {
-  title = 'cedro-test';
+  title = 'angular-reactive-forms';
 }

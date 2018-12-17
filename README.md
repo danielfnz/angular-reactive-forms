@@ -1,5 +1,5 @@
 # Perfil do investidor - Questionários
-[![Build Status](https://travis-ci.com/danielfnz/cedro-test.svg)](https://travis-ci.com/danielfnz/angular-reactive-forms) [![Style Guide](https://badgen.net/badge/eslint/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![Build Status](https://travis-ci.com/danielfnz/angular-reactive-forms.svg)](https://travis-ci.com/danielfnz/angular-reactive-forms) [![Style Guide](https://badgen.net/badge/eslint/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
 
 
 
