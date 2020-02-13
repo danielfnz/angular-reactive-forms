@@ -1,4 +1,6 @@
+dist: trusty
 sudo: required
+
 language: node_js
 node_js:
   - stable
@@ -13,11 +15,6 @@ addons:
 before_script:
   - npm install
   - npm install -g @angular/cli
-  - npm rebuild node-sass --force
-
-cache:
-  directories:
-    - node_modules
 
 script:
   - ng lint
